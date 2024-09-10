@@ -1,0 +1,19 @@
+{
+  "categoryBarTitle": "News App",
+  "pickCategory": "Pick your category\nof interest",
+  "sports": "Sports",
+  "technology": "Technology",
+  "health": "Health",
+  "business": "Business",
+  "general": "General",
+  "science": "Science",
+  "entertainment": "Entertainment",
+  "drawerHeader": "News App!",
+  "categories": "Categories",
+  "settings": "Settings",
+  "language": "Language",
+  "theme": "Theme",
+  "light": "Light",
+  "dark": "Dark",
+  "system": "System"
+}
