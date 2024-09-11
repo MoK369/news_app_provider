@@ -38,10 +38,11 @@ class _SearchScreenState extends State<SearchScreen> {
           appBar: AppBar(
             leading: const SizedBox(),
             leadingWidth: 0,
-            toolbarHeight: size.height * 0.08,
+            toolbarHeight: size.height * 0.09,
             title: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: TextField(
+                cursorColor: theme.inputDecorationTheme.hintStyle?.color,
                 controller: textEditingController,
                 style: theme.textTheme.labelMedium,
                 onSubmitted: (value) {

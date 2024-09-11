@@ -25,6 +25,7 @@ class CategoryCard extends StatelessWidget {
             newCategoryId: categoryModel.id);
       },
       child: Container(
+          clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
               color: categoryModel.bgColor,
               borderRadius: BorderRadius.only(
@@ -38,7 +39,7 @@ class CategoryCard extends StatelessWidget {
               Center(
                   child: Image.asset(
                 categoryModel.imagePath,
-                scale: 0.7,
+                scale: 0.8,
               )),
               const Spacer(),
               Padding(
