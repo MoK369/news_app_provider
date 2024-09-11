@@ -22,7 +22,7 @@ class InSpecificCategoryView extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         } else {
-          List<Source>? sources = snapshot.data?.sources ?? [];
+          List<Source> sources = snapshot.data?.sources ?? [];
           if (snapshot.data?.code != null) {
             return Center(
                 child: Text(
@@ -30,7 +30,7 @@ class InSpecificCategoryView extends StatelessWidget {
                     "${snapshot.data!.code}\n${snapshot.data!.message}"));
           }
           return TabBarOfSources(
-            sources: sources ?? [],
+            sources: sources,
           );
         }
       },

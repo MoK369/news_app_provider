@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news/core/providers/home/home_provider.dart';
 import 'package:news/core/providers/locales/locales_provider.dart';
 import 'package:news/modules/home/pages/categories/categories_page.dart';
 import 'package:news/modules/home/pages/categories/widgets/category_card.dart';
@@ -12,7 +11,6 @@ class AllCategoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final LocalesProvider localesProvider = Provider.of(context);
-    HomeProvider homeProvider = Provider.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 25),
       child: Column(

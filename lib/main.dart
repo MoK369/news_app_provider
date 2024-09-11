@@ -62,7 +62,7 @@ class _MyAppState extends State<MyApp> {
         HomeScreen.routeName: (_) => HomeScreen(),
         SplashScreen.routName: (_) => const SplashScreen(),
         DetailsScreen.routeName: (_) => const DetailsScreen(),
-        SearchScreen.routeName: (_) => SearchScreen()
+        SearchScreen.routeName: (_) => const SearchScreen()
       },
       initialRoute: SplashScreen.routName,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
