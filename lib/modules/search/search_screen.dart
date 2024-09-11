@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news/core/api_errors/api_errors.dart';
 import 'package:news/core/models/news_model.dart';
+import 'package:news/core/providers/locales/locales_provider.dart';
 import 'package:news/core/providers/themes/themes_provider.dart';
 import 'package:news/core/services/apis/api_manager.dart';
 import 'package:news/core/themes/app_themes.dart';
@@ -47,7 +48,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   onSearchButtonClick();
                 },
                 decoration: InputDecoration(
-                  hintText: "Search Article",
+                  hintText: LocalesProvider.getTrans(context).searchArticle,
                   suffixIcon: IconButton(
                       onPressed: () {
                         onSearchButtonClick();
@@ -132,8 +133,8 @@ class _SearchScreenState extends State<SearchScreen> {
 
   void onSearchButtonClick() {
     if (textEditingController.text.isEmpty) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Search Field is Empty")));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(LocalesProvider.getTrans(context).searchFieldEmpty)));
     } else {
       setState(() {
         isSearchClicked = true;

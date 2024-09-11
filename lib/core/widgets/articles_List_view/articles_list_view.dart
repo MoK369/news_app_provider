@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news/core/models/news_model.dart';
+import 'package:news/core/providers/locales/locales_provider.dart';
 import 'package:news/core/widgets/news_card/news_card.dart';
 
 import '../../../modules/details/details_screen.dart';
@@ -28,7 +29,7 @@ class ArticlesListView extends StatelessWidget {
             children: [
               Text(
                 textAlign: TextAlign.start,
-                "Total Results: ${newsModel?.totalResults ?? 0}",
+                "${LocalesProvider.getTrans(context).totalResults}${newsModel?.totalResults ?? 0}",
                 style: theme.textTheme.labelMedium!.copyWith(fontSize: 20),
               ),
               Visibility(
@@ -43,7 +44,7 @@ class ArticlesListView extends StatelessWidget {
                           },
                     title: Text(
                       textAlign: TextAlign.end,
-                      "Clear Results",
+                      LocalesProvider.getTrans(context).clearResults,
                       style:
                           theme.textTheme.labelMedium!.copyWith(fontSize: 20),
                     ),

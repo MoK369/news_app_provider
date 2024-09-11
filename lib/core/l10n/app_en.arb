@@ -15,5 +15,12 @@
   "theme": "Theme",
   "light": "Light",
   "dark": "Dark",
-  "system": "System"
+  "system": "System",
+  "totalResults": "Total Results: ",
+  "clearResults": "Clear Results",
+  "newsTitle": "News Title",
+  "viewArticle": "View Full Article",
+  "couldNotUrl": "Couldn't Launch URL",
+  "searchFieldEmpty": "Search field is Empty",
+  "searchArticle": "Search Article"
 }

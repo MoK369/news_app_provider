@@ -35,7 +35,7 @@ class AppThemes {
               fontWeight: FontWeight.w400),
           labelMedium: GoogleFonts.poppins(
               color: const Color(0xFF42505C),
-              fontSize: 20,
+              fontSize: 25,
               fontWeight: FontWeight.w500),
           displayMedium: GoogleFonts.poppins(
               color: lightOnPrimaryColor,
@@ -68,7 +68,7 @@ class AppThemes {
           fillColor: lightPrimaryColor,
           prefixIconColor: lightOnPrimaryColor,
           suffixIconColor: lightOnPrimaryColor,
-          hintStyle: const TextStyle(fontSize: 20, color: lightOnPrimaryColor),
+          hintStyle: const TextStyle(fontSize: 25, color: lightOnPrimaryColor),
           border: OutlineInputBorder(
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.circular(30)),
@@ -136,7 +136,7 @@ class AppThemes {
           fillColor: darkPrimaryColor,
           prefixIconColor: darkOnPrimaryColor,
           suffixIconColor: darkOnPrimaryColor,
-          hintStyle: const TextStyle(fontSize: 20, color: darkOnPrimaryColor),
+          hintStyle: const TextStyle(fontSize: 25, color: darkOnPrimaryColor),
           border: OutlineInputBorder(
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.circular(30)),

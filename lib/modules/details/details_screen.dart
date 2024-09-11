@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news/core/models/news_model.dart';
+import 'package:news/core/providers/locales/locales_provider.dart';
 import 'package:news/core/providers/themes/themes_provider.dart';
 import 'package:news/core/widgets/background_pattern/background_pattern.dart';
 import 'package:news/core/widgets/news_card/news_card.dart';
@@ -20,7 +21,7 @@ class DetailsScreen extends StatelessWidget {
         ModalRoute.settingsOf(context)?.arguments as Article;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("News Title"),
+        title: Text(LocalesProvider.getTrans(context).newsTitle),
         toolbarHeight: 60,
         centerTitle: true,
         leadingWidth: 80,
@@ -61,7 +62,7 @@ class DetailsScreen extends StatelessWidget {
                     },
                     title: Text(
                       textAlign: TextAlign.end,
-                      "View Full Article",
+                      LocalesProvider.getTrans(context).viewArticle,
                       style: theme.textTheme.labelMedium,
                     ),
                     trailing: Icon(
@@ -79,8 +80,8 @@ class DetailsScreen extends StatelessWidget {
 
   Future<void> launchLink(BuildContext context, Uri url) async {
     if (!await launchUrl(url)) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Could not Launch URL")));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(LocalesProvider.getTrans(context).couldNotUrl)));
     }
   }
 }
