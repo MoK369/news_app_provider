@@ -47,27 +47,19 @@ class HomeScreen extends StatelessWidget {
           ),
           drawer: CustomDrawer(
             categoriesOnTap: () {
-              pageController.animateToPage(0,
-                  duration: const Duration(milliseconds: 50),
-                  curve: Curves.easeInOut);
-              //setState(() {
+              pageController.jumpToPage(0);
               homeProvider.changeBarTitleAndCategoryId(
                   newAppBarTitle:
                       LocalesProvider.getTrans(context).categoryBarTitle,
                   newCategoryId: null);
               Navigator.pop(context);
-              //});
             },
             settingsOnTap: () {
-              pageController.animateToPage(1,
-                  duration: const Duration(microseconds: 5),
-                  curve: Curves.easeInOut);
-              //setState(() {
+              pageController.jumpToPage(1);
               homeProvider.changeBarTitleAndCategoryId(
                   newAppBarTitle: LocalesProvider.getTrans(context).settings,
                   newCategoryId: null);
               Navigator.pop(context);
-              //});
             },
           ),
           body: BgPattern(
