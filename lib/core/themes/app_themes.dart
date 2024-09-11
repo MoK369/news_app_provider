@@ -37,6 +37,10 @@ class AppThemes {
               color: const Color(0xFF42505C),
               fontSize: 20,
               fontWeight: FontWeight.w500),
+          displayMedium: GoogleFonts.poppins(
+              color: lightOnPrimaryColor,
+              fontSize: 25,
+              fontWeight: FontWeight.w500),
           //for sources name
           labelSmall: GoogleFonts.poppins(
               color: const Color(0xFF79828B),
@@ -106,6 +110,10 @@ class AppThemes {
               color: const Color(0xFF79828B),
               fontSize: 15,
               fontWeight: FontWeight.w400),
+          displayMedium: GoogleFonts.poppins(
+              color: darkOnPrimaryColor,
+              fontSize: 25,
+              fontWeight: FontWeight.w500),
           titleMedium: GoogleFonts.poppins(
               color: darkPrimaryColor,
               fontSize: 25,
@@ -125,7 +133,7 @@ class AppThemes {
       ),
       inputDecorationTheme: InputDecorationTheme(
           filled: true,
-          fillColor: lightPrimaryColor,
+          fillColor: darkPrimaryColor,
           prefixIconColor: darkOnPrimaryColor,
           suffixIconColor: darkOnPrimaryColor,
           hintStyle: const TextStyle(fontSize: 20, color: darkOnPrimaryColor),

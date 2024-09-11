@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news/core/api_errors/api_errors.dart';
 import 'package:news/core/models/sources_model.dart';
 import 'package:news/core/services/apis/api_manager.dart';
 import 'package:news/modules/home/pages/categories/widgets/tab_bar_of_sources.dart';
@@ -19,7 +20,8 @@ class _InSpecificCategoryViewState extends State<InSpecificCategoryView> {
       future: ApiManager.getSourcesByCategoryId(widget.categoryId),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return const Center(child: Text("Something went wrong!"));
+          String message = ApiErrors.checkApiError(snapshot.error!);
+          return Center(child: Text(message));
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
             child: CircularProgressIndicator(),
@@ -27,8 +29,10 @@ class _InSpecificCategoryViewState extends State<InSpecificCategoryView> {
         } else {
           List<Source> sources = snapshot.data?.sources ?? [];
           if (snapshot.data?.code != null) {
-            print('${snapshot.data?.message}');
-            return const SizedBox();
+            return Center(
+                child: Text(
+                    textAlign: TextAlign.center,
+                    "${snapshot.data!.code}\n${snapshot.data!.message}"));
           }
           return TabBarOfSources(
             sources: sources,

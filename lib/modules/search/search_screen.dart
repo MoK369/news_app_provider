@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:news/core/api_errors/api_errors.dart';
 import 'package:news/core/models/news_model.dart';
+import 'package:news/core/providers/themes/themes_provider.dart';
 import 'package:news/core/services/apis/api_manager.dart';
+import 'package:news/core/themes/app_themes.dart';
 import 'package:news/core/widgets/articles_List_view/articles_list_view.dart';
 import 'package:news/core/widgets/background_pattern/background_pattern.dart';
+import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
   static const String routeName = "SearchScreen";
@@ -17,11 +21,13 @@ class _SearchScreenState extends State<SearchScreen> {
   TextEditingController textEditingController = TextEditingController();
   bool isSearchClicked = false, articlesBuildOnce = false;
   NewsModel? newsModel;
-
+  late ThemesProvider themesProvider;
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final ThemeData theme = Theme.of(context);
+    themesProvider = Provider.of(context);
+    debugPrint("articles Statues: $articlesBuildOnce");
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
@@ -46,18 +52,19 @@ class _SearchScreenState extends State<SearchScreen> {
                       onPressed: () {
                         onSearchButtonClick();
                       },
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.search,
                         size: 30,
+                        color: getIconColor(),
                       )),
                   prefixIcon: IconButton(
                       onPressed: () {
                         onClearButtonClick();
                       },
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.clear,
-                        color: Colors.green,
                         size: 30,
+                        color: getIconColor(),
                       )),
                 ),
               ),
@@ -70,12 +77,13 @@ class _SearchScreenState extends State<SearchScreen> {
                   children: [
                     Visibility(
                       visible: !isSearchClicked,
-                      child: const Expanded(
+                      child: Expanded(
                         child: Center(
                             child: ImageIcon(
-                          AssetImage("assets/icons/window_search_icon.png"),
+                          const AssetImage(
+                              "assets/icons/window_search_icon.png"),
                           size: 80,
-                          color: Colors.green,
+                          color: getIconColor(),
                         )),
                       ),
                     ),
@@ -87,15 +95,23 @@ class _SearchScreenState extends State<SearchScreen> {
                               textEditingController.text),
                           builder: (context, snapshot) {
                             if (snapshot.hasError) {
-                              return const Center(
-                                  child: Text("Something went wrong!"));
+                              String message =
+                                  ApiErrors.checkApiError(snapshot.error!);
+                              return Center(child: Text(message));
                             } else if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
                               return const Center(
                                 child: CircularProgressIndicator(),
                               );
                             } else {
+                              if (snapshot.data?.code != null) {
+                                return Center(
+                                    child: Text(
+                                        textAlign: TextAlign.center,
+                                        "${snapshot.data!.code}\n${snapshot.data!.message}"));
+                              }
                               newsModel = snapshot.data;
+                              articlesBuildOnce = true;
                               return ArticlesListView(
                                   newsModel: newsModel,
                                   showClearAllResults: true,
@@ -124,12 +140,6 @@ class _SearchScreenState extends State<SearchScreen> {
         articlesBuildOnce = false;
         FocusManager.instance.primaryFocus?.unfocus();
       });
-      Future.delayed(
-        const Duration(seconds: 1),
-        () {
-          articlesBuildOnce = true;
-        },
-      );
     }
   }
 
@@ -150,5 +160,11 @@ class _SearchScreenState extends State<SearchScreen> {
       articlesBuildOnce = false;
       isSearchClicked = false;
     });
+  }
+
+  Color getIconColor() {
+    return themesProvider.isDark()
+        ? AppThemes.darkOnPrimaryColor
+        : AppThemes.lightOnPrimaryColor;
   }
 }

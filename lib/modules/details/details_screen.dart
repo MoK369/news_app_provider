@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news/core/models/news_model.dart';
+import 'package:news/core/providers/themes/themes_provider.dart';
 import 'package:news/core/widgets/background_pattern/background_pattern.dart';
 import 'package:news/core/widgets/news_card/news_card.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -13,6 +15,7 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final ThemeData theme = Theme.of(context);
+    final ThemesProvider themesProvider = Provider.of(context);
     final Article article =
         ModalRoute.settingsOf(context)?.arguments as Article;
     return Scaffold(
@@ -37,7 +40,8 @@ class DetailsScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(25)),
+                  color: theme.scaffoldBackgroundColor,
+                  borderRadius: BorderRadius.circular(25)),
               width: size.width * 0.95,
               height: size.height * 0.4,
               child: Column(
@@ -60,7 +64,11 @@ class DetailsScreen extends StatelessWidget {
                       "View Full Article",
                       style: theme.textTheme.labelMedium,
                     ),
-                    trailing: const Icon(Icons.play_arrow),
+                    trailing: Icon(
+                      Icons.play_arrow,
+                      color:
+                          themesProvider.isDark() ? Colors.white : Colors.black,
+                    ),
                   )
                 ],
               )),

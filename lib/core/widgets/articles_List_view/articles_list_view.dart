@@ -28,7 +28,7 @@ class ArticlesListView extends StatelessWidget {
             children: [
               Text(
                 textAlign: TextAlign.start,
-                "Total Result: ${newsModel?.totalResults ?? 0}",
+                "Total Results: ${newsModel?.totalResults ?? 0}",
                 style: theme.textTheme.labelMedium!.copyWith(fontSize: 20),
               ),
               Visibility(
@@ -43,7 +43,7 @@ class ArticlesListView extends StatelessWidget {
                           },
                     title: Text(
                       textAlign: TextAlign.end,
-                      "Clear Result",
+                      "Clear Results",
                       style:
                           theme.textTheme.labelMedium!.copyWith(fontSize: 20),
                     ),

@@ -29,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //final ThemeData theme = Theme.of(context);
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -63,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         settingsOnTap: () {
           pageController.animateToPage(1,
-              duration: const Duration(microseconds: 50),
+              duration: const Duration(microseconds: 5),
               curve: Curves.easeInOut);
           setState(() {
             currentCategoryId = null;

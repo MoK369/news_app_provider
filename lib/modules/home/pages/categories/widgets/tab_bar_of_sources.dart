@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news/core/api_errors/api_errors.dart';
 import 'package:news/core/models/news_model.dart';
 import 'package:news/core/models/sources_model.dart';
 import 'package:news/core/services/apis/api_manager.dart';
@@ -58,8 +59,8 @@ class _TabBarOfSourcesState extends State<TabBarOfSources>
             future: ApiManager.getTopHeadlinesBySourceId(selectedSourceId),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
-                print(snapshot.error);
-                return const Center(child: Text("Something went wrong!"));
+                String message = ApiErrors.checkApiError(snapshot.error!);
+                return Center(child: Text(message));
               } else if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
                   child: CircularProgressIndicator(),
@@ -67,7 +68,10 @@ class _TabBarOfSourcesState extends State<TabBarOfSources>
               } else {
                 NewsModel? newsModel = snapshot.data;
                 if (newsModel?.code != null) {
-                  print('${newsModel?.message}');
+                  return Center(
+                      child: Text(
+                          textAlign: TextAlign.center,
+                          "${snapshot.data!.code}\n${snapshot.data!.message}"));
                 }
                 return ArticlesListView(newsModel: newsModel);
               }

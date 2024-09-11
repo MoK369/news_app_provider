@@ -22,7 +22,9 @@ class TabItem extends StatelessWidget {
           child: Text(
             title,
             style: GoogleFonts.exo(
-                color: isSelected ? Colors.white : theme.cardColor,
+                color: isSelected
+                    ? theme.textTheme.titleMedium?.color
+                    : theme.cardColor,
                 fontWeight: FontWeight.w400,
                 fontSize: 20),
           ),
