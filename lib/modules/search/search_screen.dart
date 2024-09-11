@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news/core/api_errors/api_errors.dart';
 import 'package:news/core/models/news_model.dart';
+import 'package:news/core/providers/home/home_provider.dart';
 import 'package:news/core/providers/locales/locales_provider.dart';
 import 'package:news/core/providers/themes/themes_provider.dart';
-import 'package:news/core/services/apis/api_manager.dart';
 import 'package:news/core/themes/app_themes.dart';
 import 'package:news/core/widgets/articles_List_view/articles_list_view.dart';
 import 'package:news/core/widgets/background_pattern/background_pattern.dart';
@@ -27,8 +27,8 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final ThemeData theme = Theme.of(context);
+    final HomeProvider homeProvider = Provider.of(context);
     themesProvider = Provider.of(context);
-    debugPrint("articles Statues: $articlesBuildOnce");
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
@@ -92,8 +92,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       visible: isSearchClicked,
                       child: Expanded(
                         child: FutureBuilder(
-                          future: ApiManager.getNewsByQuery(
-                              textEditingController.text),
+                          future: homeProvider
+                              .getNewsByQuery(textEditingController.text),
                           builder: (context, snapshot) {
                             if (snapshot.hasError) {
                               String message =

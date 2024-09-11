@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:news/core/models/category_model.dart';
+import 'package:news/core/providers/home/home_provider.dart';
+import 'package:provider/provider.dart';
 
 class CategoryCard extends StatelessWidget {
   final CategoryModel categoryModel;
-  final void Function(String categoryId, String categoryLabel) onTap;
   final bool isLTR;
 
   const CategoryCard(
       {super.key,
       required this.categoryModel,
       required this.isLTR,
-      required this.onTap});
+  });
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    HomeProvider homeProvider = Provider.of(context);
+
     return InkWell(
       onTap: () {
-        onTap(categoryModel.id, categoryModel.label);
+        homeProvider.changeBarTitleAndCategoryId(
+            newAppBarTitle: categoryModel.label,
+            newCategoryId: categoryModel.id);
       },
       child: Container(
           decoration: BoxDecoration(

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:news/core/api_errors/api_errors.dart';
 import 'package:news/core/models/news_model.dart';
 import 'package:news/core/models/sources_model.dart';
-import 'package:news/core/services/apis/api_manager.dart';
+import 'package:news/core/providers/home/home_provider.dart';
 import 'package:news/core/widgets/articles_List_view/articles_list_view.dart';
 import 'package:news/modules/home/pages/categories/widgets/tab_item.dart';
+import 'package:provider/provider.dart';
 
 class TabBarOfSources extends StatefulWidget {
   final List<Source> sources;
@@ -30,6 +31,7 @@ class _TabBarOfSourcesState extends State<TabBarOfSources>
 
   @override
   Widget build(BuildContext context) {
+    HomeProvider homeProvider = Provider.of(context);
     return Column(
       children: [
         TabBar(
@@ -56,7 +58,7 @@ class _TabBarOfSourcesState extends State<TabBarOfSources>
             ).toList()),
         Expanded(
           child: FutureBuilder(
-            future: ApiManager.getTopHeadlinesBySourceId(selectedSourceId),
+            future: homeProvider.getTopHeadlinesBySourceId(selectedSourceId),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 String message = ApiErrors.checkApiError(snapshot.error!);

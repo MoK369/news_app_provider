@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:news/core/models/category_model.dart';
+import 'package:news/core/providers/home/home_provider.dart';
 import 'package:news/core/providers/locales/locales_provider.dart';
 import 'package:news/modules/home/pages/categories/views/all_category_view.dart';
 import 'package:news/modules/home/pages/categories/views/in_specific_category.dart';
 import 'package:provider/provider.dart';
 
 class CategoriesPage extends StatefulWidget {
-  final void Function(String categoryId, String categoryLabel) onTap;
   final String? currentCategoryId;
 
-  const CategoriesPage(
-      {super.key, required this.onTap, required this.currentCategoryId});
+  const CategoriesPage({super.key, required this.currentCategoryId});
 
   static List<CategoryModel> categories = [];
 
@@ -19,8 +18,8 @@ class CategoriesPage extends StatefulWidget {
 }
 
 class _CategoriesPageState extends State<CategoriesPage> {
-  late final LocalesProvider localesProvider;
-  late final ThemeData theme;
+  late LocalesProvider localesProvider;
+  late ThemeData theme;
 
   @override
   void didChangeDependencies() {
@@ -70,12 +69,9 @@ class _CategoriesPageState extends State<CategoriesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.currentCategoryId == null
-        ? AllCategoryView(
-            onCategoryCardTap: (categoryId, categoryLabel) {
-              widget.onTap(categoryId, categoryLabel);
-            },
-          )
-        : InSpecificCategoryView(categoryId: widget.currentCategoryId!);
+    HomeProvider homeProvider = Provider.of(context);
+    return homeProvider.currentCategoryId == null
+        ? const AllCategoryView()
+        : const InSpecificCategoryView();
   }
 }

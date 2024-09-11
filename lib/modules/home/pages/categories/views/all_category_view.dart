@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:news/core/providers/home/home_provider.dart';
 import 'package:news/core/providers/locales/locales_provider.dart';
 import 'package:news/modules/home/pages/categories/categories_page.dart';
 import 'package:news/modules/home/pages/categories/widgets/category_card.dart';
 import 'package:provider/provider.dart';
 
 class AllCategoryView extends StatelessWidget {
-  final void Function(String categoryId, String categoryLabel)
-      onCategoryCardTap;
-
-  const AllCategoryView({super.key, required this.onCategoryCardTap});
+  const AllCategoryView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final LocalesProvider localesProvider = Provider.of(context);
+    HomeProvider homeProvider = Provider.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 25),
       child: Column(
@@ -36,9 +35,6 @@ class AllCategoryView extends StatelessWidget {
                   crossAxisSpacing: 20),
               itemBuilder: (context, index) {
                 return CategoryCard(
-                    onTap: (categoryId, categoryLabel) {
-                      onCategoryCardTap(categoryId, categoryLabel);
-                    },
                     categoryModel: CategoriesPage.categories[index],
                     isLTR: localesProvider.isArabic()
                         ? index % 2 != 0
