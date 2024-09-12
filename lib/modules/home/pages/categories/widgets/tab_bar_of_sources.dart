@@ -3,6 +3,7 @@ import 'package:news/core/api_errors/api_errors.dart';
 import 'package:news/core/models/news_model.dart';
 import 'package:news/core/models/sources_model.dart';
 import 'package:news/core/providers/home/home_provider.dart';
+import 'package:news/core/providers/locales/locales_provider.dart';
 import 'package:news/core/widgets/articles_List_view/articles_list_view.dart';
 import 'package:news/modules/home/pages/categories/widgets/tab_item.dart';
 import 'package:provider/provider.dart';
@@ -70,11 +71,11 @@ class _TabBarOfSourcesState extends State<TabBarOfSources>
                 );
               } else {
                 NewsModel? newsModel = snapshot.data;
-                if (newsModel?.code != null) {
+                if (newsModel?.code == "rateLimited") {
                   return Center(
                       child: Text(
                           textAlign: TextAlign.center,
-                          "${snapshot.data!.code}\n${snapshot.data!.message}"));
+                          LocalesProvider.getTrans(context).rateLimited));
                 }
                 return ArticlesListView(newsModel: newsModel);
               }

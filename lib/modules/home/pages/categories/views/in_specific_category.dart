@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news/core/api_errors/api_errors.dart';
 import 'package:news/core/models/sources_model.dart';
 import 'package:news/core/providers/home/home_provider.dart';
+import 'package:news/core/providers/locales/locales_provider.dart';
 import 'package:news/modules/home/pages/categories/widgets/tab_bar_of_sources.dart';
 import 'package:provider/provider.dart';
 
@@ -23,11 +24,11 @@ class InSpecificCategoryView extends StatelessWidget {
           );
         } else {
           List<Source> sources = snapshot.data?.sources ?? [];
-          if (snapshot.data?.code != null) {
+          if (snapshot.data?.code == "rateLimited") {
             return Center(
                 child: Text(
                     textAlign: TextAlign.center,
-                    "${snapshot.data!.code}\n${snapshot.data!.message}"));
+                    LocalesProvider.getTrans(context).rateLimited));
           }
           return TabBarOfSources(
             sources: sources,

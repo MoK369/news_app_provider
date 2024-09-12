@@ -106,11 +106,12 @@ class _SearchScreenState extends State<SearchScreen> {
                                 child: CircularProgressIndicator(),
                               );
                             } else {
-                              if (snapshot.data?.code != null) {
+                              if (snapshot.data?.code == "rateLimited") {
                                 return Center(
                                     child: Text(
                                         textAlign: TextAlign.center,
-                                        "${snapshot.data!.code}\n${snapshot.data!.message}"));
+                                        LocalesProvider.getTrans(context)
+                                            .rateLimited));
                               }
                               newsModel = snapshot.data;
                               articlesBuildOnce = true;

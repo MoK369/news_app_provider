@@ -26,5 +26,6 @@
   "noInternet": "No Internet connection \uD83D\uDE11",
   "couldNotFindArticle": "Couldn't find the article \uD83D\uDE31",
   "badFormat": "Bad response format \uD83D\uDC4E",
-  "somethingWentWrong": "Something went wrong \uD83E\uDD14"
+  "somethingWentWrong": "Something went wrong \uD83E\uDD14",
+  "rateLimited": "You have made too many requests recently. Developer accounts are limited to 100 requests over a 24 hour period (50 requests available every 12 hours). Please upgrade to a paid plan if you need more requests. ✋"
 }
