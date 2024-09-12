@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
       darkTheme: AppThemes.darkTheme,
       themeMode: themesProvider.currentThemeMode,
       routes: {
-        HomeScreen.routeName: (_) => HomeScreen(),
+        HomeScreen.routeName: (_) => const HomeScreen(),
         SplashScreen.routName: (_) => const SplashScreen(),
         DetailsScreen.routeName: (_) => const DetailsScreen(),
         SearchScreen.routeName: (_) => const SearchScreen()
