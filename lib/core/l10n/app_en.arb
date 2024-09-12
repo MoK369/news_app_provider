@@ -22,5 +22,9 @@
   "viewArticle": "View Full Article",
   "couldNotUrl": "Couldn't Launch URL",
   "searchFieldEmpty": "Search field is Empty",
-  "searchArticle": "Search Article"
+  "searchArticle": "Search Article",
+  "noInternet": "No Internet connection \uD83D\uDE11",
+  "couldNotFindArticle": "Couldn't find the article \uD83D\uDE31",
+  "badFormat": "Bad response format \uD83D\uDC4E",
+  "somethingWentWrong": "Something went wrong \uD83E\uDD14"
 }

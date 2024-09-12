@@ -97,8 +97,8 @@ class _SearchScreenState extends State<SearchScreen> {
                               .getNewsByQuery(textEditingController.text),
                           builder: (context, snapshot) {
                             if (snapshot.hasError) {
-                              String message =
-                                  ApiErrors.checkApiError(snapshot.error!);
+                              String message = ApiErrors.checkApiError(
+                                  snapshot.error!, context);
                               return Center(child: Text(message));
                             } else if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
