@@ -44,7 +44,7 @@ class AppThemes {
           //for sources name
           labelSmall: GoogleFonts.poppins(
               color: const Color(0xFF79828B),
-              fontSize: 15,
+              fontSize: 17,
               fontWeight: FontWeight.w400),
           titleMedium: GoogleFonts.poppins(
               color: lightPrimaryColor,
@@ -108,7 +108,7 @@ class AppThemes {
               color: Colors.white, fontSize: 25, fontWeight: FontWeight.w500),
           labelSmall: GoogleFonts.poppins(
               color: const Color(0xFF79828B),
-              fontSize: 15,
+              fontSize: 17,
               fontWeight: FontWeight.w400),
           displayMedium: GoogleFonts.poppins(
               color: darkOnPrimaryColor,

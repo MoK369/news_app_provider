@@ -17,6 +17,7 @@ class DetailsScreen extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     final ThemeData theme = Theme.of(context);
     final ThemesProvider themesProvider = Provider.of(context);
+    final LocalesProvider localesProvider = Provider.of(context);
     final Article article =
         ModalRoute.settingsOf(context)?.arguments as Article;
     return Scaffold(
@@ -67,11 +68,14 @@ class DetailsScreen extends StatelessWidget {
                         LocalesProvider.getTrans(context).viewArticle,
                         style: theme.textTheme.labelMedium,
                       ),
-                      trailing: Icon(
-                        Icons.play_arrow,
-                        color: themesProvider.isDark()
-                            ? Colors.white
-                            : Colors.black,
+                      trailing: Transform.flip(
+                        flipX: localesProvider.isArabic() ? true : false,
+                        child: Icon(
+                          Icons.play_arrow,
+                          color: themesProvider.isDark()
+                              ? Colors.white
+                              : Colors.black,
+                        ),
                       ),
                     )
                   ],

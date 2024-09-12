@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:news/core/extension_motheds/string_extension_motheds.dart';
 import 'package:news/core/models/news_model.dart';
+import 'package:news/core/providers/locales/locales_provider.dart';
 import 'package:news/core/providers/themes/themes_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,7 @@ class NewsCard extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
     final Size size = MediaQuery.of(context).size;
     final ThemesProvider themesProvider = Provider.of(context);
+    final LocalesProvider localesProvider = Provider.of(context);
     return InkWell(
       splashColor: Colors.transparent,
       onTap: onTap == null
@@ -86,7 +88,9 @@ class NewsCard extends StatelessWidget {
                 ),
                 Text(
                   textAlign: TextAlign.end,
-                  article?.publishAt?.getLocalDateTimeFormat() ?? "",
+                  article?.publishAt?.getLocalDateTimeFormat(
+                          localesProvider.currentLocale) ??
+                      "",
                   style: theme.textTheme.labelSmall,
                 ),
               ],
