@@ -11,20 +11,22 @@ import 'package:provider/provider.dart';
 class HomeScreen extends StatelessWidget {
   static const String routeName = 'HomeScreen';
 
-  HomeScreen({super.key});
-
-  final PageController pageController = PageController(initialPage: 0);
-
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<HomeProvider>(
       builder: (context, homeProvider, child) {
-        final Size size = MediaQuery.of(context).size;
         if (homeProvider.currentAppBarTitle == '') {
           homeProvider.initAppBarTitle(
               appBarTitle: LocalesProvider.getTrans(context).categoryBarTitle);
         }
+        if (homeProvider.didLocaleDropDownClicked) {
+          homeProvider.currentAppBarTitle =
+              LocalesProvider.getTrans(context).settings;
+          homeProvider.didLocaleDropDownClicked = false;
+        }
+        final Size size = MediaQuery.of(context).size;
         return Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
@@ -45,26 +47,10 @@ class HomeScreen extends StatelessWidget {
                   ]
                 : null,
           ),
-          drawer: CustomDrawer(
-            categoriesOnTap: () {
-              pageController.jumpToPage(0);
-              homeProvider.changeBarTitleAndCategoryId(
-                  newAppBarTitle:
-                      LocalesProvider.getTrans(context).categoryBarTitle,
-                  newCategoryId: null);
-              Navigator.pop(context);
-            },
-            settingsOnTap: () {
-              pageController.jumpToPage(1);
-              homeProvider.changeBarTitleAndCategoryId(
-                  newAppBarTitle: LocalesProvider.getTrans(context).settings,
-                  newCategoryId: null);
-              Navigator.pop(context);
-            },
-          ),
+          drawer: const CustomDrawer(),
           body: BgPattern(
               child: PageView(
-            controller: pageController,
+            controller: homeProvider.pageController,
             physics: const NeverScrollableScrollPhysics(),
             children: [
               CategoriesPage(

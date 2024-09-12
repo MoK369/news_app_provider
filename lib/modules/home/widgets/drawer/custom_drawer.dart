@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:news/core/providers/home/home_provider.dart';
 import 'package:news/core/providers/locales/locales_provider.dart';
 import 'package:news/core/themes/app_themes.dart';
+import 'package:provider/provider.dart';
 
 class CustomDrawer extends StatelessWidget {
-  final VoidCallback categoriesOnTap, settingsOnTap;
+  //final VoidCallback categoriesOnTap, settingsOnTap;
 
-  const CustomDrawer(
-      {super.key, required this.categoriesOnTap, required this.settingsOnTap});
+  const CustomDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    final HomeProvider homeProvider = Provider.of(context);
 
     return Drawer(
       child: Column(
@@ -27,7 +29,12 @@ class CustomDrawer extends StatelessWidget {
               )),
           ListTile(
             onTap: () {
-              categoriesOnTap();
+              homeProvider.pageController.jumpToPage(0);
+              homeProvider.changeBarTitleAndCategoryId(
+                  newAppBarTitle:
+                      LocalesProvider.getTrans(context).categoryBarTitle,
+                  newCategoryId: null);
+              Navigator.pop(context);
             },
             leading: ImageIcon(
               const AssetImage('assets/icons/menu_icon.png'),
@@ -41,7 +48,11 @@ class CustomDrawer extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              settingsOnTap();
+              homeProvider.pageController.jumpToPage(1);
+              homeProvider.changeBarTitleAndCategoryId(
+                  newAppBarTitle: LocalesProvider.getTrans(context).settings,
+                  newCategoryId: null);
+              Navigator.pop(context);
             },
             leading: ImageIcon(
               const AssetImage('assets/icons/settings_icon.png'),

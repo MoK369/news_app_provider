@@ -30,11 +30,12 @@ class ArticlesListView extends StatelessWidget {
               Text(
                 textAlign: TextAlign.start,
                 "${LocalesProvider.getTrans(context).totalResults}${newsModel?.totalResults ?? 0}",
-                style: theme.textTheme.labelMedium!.copyWith(fontSize: 20),
+                style: theme.textTheme.labelSmall,
               ),
               Visibility(
                 visible: showClearAllResults,
-                child: Expanded(
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.4,
                   child: ListTile(
                     contentPadding: EdgeInsets.zero,
                     onTap: onClearResultsClick == null
@@ -45,10 +46,12 @@ class ArticlesListView extends StatelessWidget {
                     title: Text(
                       textAlign: TextAlign.end,
                       LocalesProvider.getTrans(context).clearResults,
-                      style:
-                          theme.textTheme.labelMedium!.copyWith(fontSize: 20),
+                      style: theme.textTheme.labelSmall,
                     ),
-                    trailing: const Icon(Icons.clear_all_outlined),
+                    trailing: const Icon(
+                      Icons.clear_all_outlined,
+                      size: 20,
+                    ),
                   ),
                 ),
               )

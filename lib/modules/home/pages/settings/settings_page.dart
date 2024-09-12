@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news/core/providers/home/home_provider.dart';
 import 'package:news/core/providers/locales/locales_provider.dart';
 import 'package:news/core/providers/themes/themes_provider.dart';
 import 'package:provider/provider.dart';
@@ -14,12 +15,14 @@ class _SettingsPageState extends State<SettingsPage> {
   late List<String> themes;
   late LocalesProvider localesProvider;
   late ThemesProvider themesProvider;
+  late HomeProvider homeProvider;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     localesProvider = Provider.of(context);
     themesProvider = Provider.of(context);
+    homeProvider = Provider.of(context);
     themes = [
       LocalesProvider.getTrans(context).light,
       LocalesProvider.getTrans(context).dark,
@@ -49,6 +52,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           ? localesProvider.locales[1]
                           : localesProvider.locales[0]),
                   onSelected: (value) {
+                    homeProvider.didLocaleDropDownClicked = true;
                     localesProvider.changeLocale(
                         value == localesProvider.locales[1] ? "ar" : "en");
                   },

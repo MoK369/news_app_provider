@@ -6,6 +6,8 @@ import 'package:news/core/services/apis/api_manager.dart';
 class HomeProvider extends ChangeNotifier {
   String? currentCategoryId;
   String currentAppBarTitle = "";
+  bool didLocaleDropDownClicked = false;
+  final PageController pageController = PageController(initialPage: 0);
 
   void initAppBarTitle({required String appBarTitle}) {
     currentAppBarTitle = appBarTitle;
@@ -16,7 +18,6 @@ class HomeProvider extends ChangeNotifier {
     currentAppBarTitle = newAppBarTitle;
     currentCategoryId = newCategoryId;
     notifyListeners();
-    debugPrint(currentAppBarTitle);
   }
 
   Future<SourcesModel?> getSourcesByCurrentCategoryId() {
