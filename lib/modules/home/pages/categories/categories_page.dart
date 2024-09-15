@@ -46,7 +46,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
           id: 'business',
           label: LocalesProvider.getTrans(context).business,
           bgColor: const Color(0xFFCF7E48),
-          imagePath: "assets/images/bussines.png"),
+          imagePath: "assets/images/business.png"),
       CategoryModel(
           id: "general",
           label: LocalesProvider.getTrans(context).general,

@@ -7,10 +7,10 @@ class CategoryCard extends StatelessWidget {
   final CategoryModel categoryModel;
   final bool isLTR;
 
-  const CategoryCard(
-      {super.key,
-      required this.categoryModel,
-      required this.isLTR,
+  const CategoryCard({
+    super.key,
+    required this.categoryModel,
+    required this.isLTR,
   });
 
   @override
