@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:news/core/models/category_model.dart';
 import 'package:news/core/providers/home/home_provider.dart';
 import 'package:news/core/providers/locales/locales_provider.dart';
-import 'package:news/modules/home/pages/categories/views/all_category_view.dart';
-import 'package:news/modules/home/pages/categories/views/in_specific_category.dart';
+import 'package:news/modules/home/pages/categories/views/all_categories/all_categories_view.dart';
+import 'package:news/modules/home/pages/categories/views/in_specific_category/in_specific_category_view.dart';
 import 'package:provider/provider.dart';
 
 class CategoriesPage extends StatefulWidget {
@@ -71,7 +71,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
   Widget build(BuildContext context) {
     HomeProvider homeProvider = Provider.of(context);
     return homeProvider.currentCategoryId == null
-        ? const AllCategoryView()
+        ? const AllCategoriesView()
         : const InSpecificCategoryView();
   }
 }

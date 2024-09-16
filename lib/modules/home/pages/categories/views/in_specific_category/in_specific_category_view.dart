@@ -3,7 +3,7 @@ import 'package:news/core/api_errors/api_errors.dart';
 import 'package:news/core/models/sources_model.dart';
 import 'package:news/core/providers/home/home_provider.dart';
 import 'package:news/core/providers/locales/locales_provider.dart';
-import 'package:news/modules/home/pages/categories/widgets/tab_bar_of_sources.dart';
+import 'package:news/modules/home/pages/categories/views/in_specific_category/sections/sources_tab_section.dart';
 import 'package:provider/provider.dart';
 
 class InSpecificCategoryView extends StatelessWidget {
@@ -30,9 +30,7 @@ class InSpecificCategoryView extends StatelessWidget {
                     textAlign: TextAlign.center,
                     LocalesProvider.getTrans(context).rateLimited));
           }
-          return TabBarOfSources(
-            sources: sources,
-          );
+          return SourcesTabSection(sources: sources);
         }
       },
     );

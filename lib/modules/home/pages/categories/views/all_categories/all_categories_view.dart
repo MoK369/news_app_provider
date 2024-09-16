@@ -4,8 +4,8 @@ import 'package:news/modules/home/pages/categories/categories_page.dart';
 import 'package:news/modules/home/pages/categories/widgets/category_card.dart';
 import 'package:provider/provider.dart';
 
-class AllCategoryView extends StatelessWidget {
-  const AllCategoryView({super.key});
+class AllCategoriesView extends StatelessWidget {
+  const AllCategoriesView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -87,9 +87,11 @@ class DetailsScreen extends StatelessWidget {
   }
 
   Future<void> launchLink(BuildContext context, Uri url) async {
+    ScaffoldMessengerState scaffoldMessenger = ScaffoldMessenger.of(context);
+    String message = LocalesProvider.getTrans(context).couldNotUrl;
     if (!await launchUrl(url)) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(LocalesProvider.getTrans(context).couldNotUrl)));
+      scaffoldMessenger.showSnackBar(SnackBar(content: Text(message)));
     }
+    return;
   }
 }
